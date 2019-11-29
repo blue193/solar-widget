@@ -1,0 +1,25 @@
+.container div {
+	background: lightgrey;
+}
+
+.up-row {
+	height: 80vh;
+}
+
+.in-house-content {
+	background: green;
+}
+
+.awst-clock {
+	height: 20%;
+    background: lightblue;
+}
+
+.solar-production {
+	height: 80%;
+}
+
+.weather {
+	height: 20vh;
+	background: red;
+}
