@@ -23,3 +23,8 @@
 	height: 20vh;
 	background: red;
 }
+
+.highcharts-legend-item .highcharts-point,
+.highcharts-legend-item .highcharts-graph {
+  display: none
+}

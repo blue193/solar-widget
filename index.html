@@ -4,6 +4,8 @@
 <title>Solar Widget</title>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
 	<link rel="stylesheet" href="style.css">
+	<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
 </head>
 <body>
 
@@ -13,16 +15,107 @@
 
 <div class="container-fluid">	
 	<div class="row up-row">
-		<div class="col-7 col-sm-7 in-house-content">In-House Content</div>
-		<div class="col-5 col-sm-5 right-panel">
+		<div class="col-2 col-sm-2 in-house-content" id="inhouse">In-House Content</div>
+		<div class="col-10 col-sm-10 right-panel">
 			<div class="row awst-clock">AWST Clock</div>
-			<div class="row solar-production">Solar Production</div>
+			<div class="row solar-production" id="solar">Solar Production</div>
 		</div>
 	</div>
 	<div class="row weather">
 		weather
 	</div>
 </div>
+<script>
 
+	categories = ['02:00', '05:00', '08:00', '11:00', '13:00', '16:00', '19:00', '22:00'];
+	power2gridData = [29.9, 71.5, 34.4, 129.2, 144.0, 120.0, 135.6, 148.5, ];
+	consumedDirectlyData = [100.2, 23.1, 34.8, 63.5, 39.3, 36.7, 93.1, 11.3];
+
+
+	document.addEventListener('DOMContentLoaded', function () {
+
+		$("#a1").click(function () {
+	        $('.highcharts-legend-item:nth-child(1)').click();
+	        $(this).toggleClass("leg-clicked");
+	    });
+
+        var myChart = Highcharts.chart('solar', {
+        	title: {	
+        		text: null
+        	},
+        	exporting: { enabled: false },
+		    xAxis: {
+		        categories: categories
+		    },
+		    yAxis: {
+		    	title: {
+				    align: 'high',
+				    text: 'kw',
+				    style: {
+				      'text-anchor': 'start'
+				    },
+				    rotation: 0,
+				    y: -20,
+				    x: 10,
+				    textAlign: 'center'
+				  }
+		    },
+		    plotOptions: {
+		        series: {
+		            marker: {
+		                enabled: false
+		            }
+		        }
+		    },
+		    legend: {
+		    	useHTML: true,
+		        labelFormatter: function() {
+			      return "<img src='https://pbs.twimg.com/profile_images/538262176134221824/Vx4_Psj1_400x400.png' width='20' height='20'> " + this.name
+			    },
+		        title: {
+		            text: '<span style="font-size: 8px; color: #666; font-weight: normal"></span>',
+		            style: {
+		                fontStyle: 'italic'
+		            }
+		        },
+		        layout: 'horizontal',
+		        align: 'center',
+		        verticalAlign: 'top',
+		        x: -10,
+		        y: 100
+		    },
+		    series	: [{
+		    	color: "#AED581",
+				dashStyle: "solid",
+				name: 'Power to grid',
+		        data: power2gridData
+		    }, {
+		    	name: "Consumed directly",
+		    	composition: {
+                    'Caffeine': '51%',
+                    'Alcohol': '31%',
+                    'Water': '4%'
+                },
+		    	data: consumedDirectlyData
+		    }],
+		    tooltip: {
+		    	shared: false,
+	            formatter: function () {
+	            	var serie = this.series;
+	                var s = '';
+	                s += '<span style="color:' + serie.color + '">' + serie.options.name + '</span>: <b>' + this.y + '</b><br/>';
+	                s += '<span style="display: flex; justify-content: space-between "'+ 'Hello'+'World' +'</span>';
+	                $.each(serie.options.composition, function(name, value) {
+	                    s += '<b><span>' + name + ':</span></b><span style="align-self: right;"> ' + value + '</span><br>';
+	                });
+	                return s;
+	            	// var serieI = this.series.index;
+              //   	var index = categories.indexOf(this.x);
+	             //    return categories[index] + '<br><span style="font-size: 12px; color: #0ff; font-weight: normal">Power to grid' + power2gridData[serieI] + '</span>';
+	            }
+	        },
+		});
+    });
+</script>
 </body>
 </html>
