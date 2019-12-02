@@ -12,7 +12,7 @@
 
 .awst-clock {
 	height: 20%;
-    background: lightblue;
+    /*background: lightblue;*/
 }
 
 .solar-production {
@@ -21,7 +21,7 @@
 
 .weather {
 	height: 20vh;
-	background: red;
+	/*background: red;*/
 }
 
 .highcharts-legend-item .highcharts-point,
