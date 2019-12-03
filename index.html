@@ -9,12 +9,13 @@
 </head>
 <body>
 
-<!-- Latest compiled and minified JavaScript -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
-<div class="container-fluid">	
-	<div class="row solar-production" id="solar">Solar Production</div>
+<div class="container-fluid">
+	<div class="row d-flex justify-content-center">
+		<div class="col-sm-12 col-lg-8" id="solar"></div>
+	</div>
 </div>
 <script>
 
@@ -82,17 +83,6 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 				    textAlign: 'center'
 				  }
 		    },
-		    // legend: {
-		    // 	useHTML: true,
-		    //     labelFormatter: function() {
-			   //    return this.name
-			   //  },
-		    //     layout: 'horizontal',
-		    //     align: 'center',
-		    //     verticalAlign: 'top',
-		    //     x: -10,
-		    //     y: 100
-		    // },
 		    legend: {
 		    	layout: 'horizontal',
 			   align: 'center',
