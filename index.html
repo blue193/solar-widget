@@ -38,11 +38,10 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 			var dt = new Date(t);
 			var hr = dt.getHours();
 			var m = "0" + dt.getMinutes();
-			// var s = "0" + dt.getSeconds();
 			return hr+ ':' + m.substr(-2);  
 		}
 
-	 	Highcharts.setOptions({                                            // This is for all plots, change Date axis to local timezone
+	 	Highcharts.setOptions({
             global : {
                 useUTC : false
             }
@@ -106,8 +105,7 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		    	color: "#AED581",
 				dashStyle: "solid",
 				name: 'From to Grid',
-				showInLegend: true,
-				marker : {symbol : 'circle',radius : 12 },
+				showInLegend: false,
 		        data: power2gridData,
 		        marker: {
 			        symbol: 'circle'
@@ -148,26 +146,26 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 	        },
 		});
 
-		// myChart.renderer.rect(80, 115, 10, 10).attr({
-  //           fill: 'red',
-  //           stroke: 'red',
-  //               'stroke-width': 0.1
-  //       }).add();
-  //       myChart.renderer.text("consumption", 100, 125).add();
+		myChart.renderer.rect(80, 115, 10, 10).attr({
+            fill: 'red',
+            stroke: 'red',
+                'stroke-width': 0.1
+        }).add();
+        myChart.renderer.text("consumption", 100, 125).add();
 
-  //       myChart.renderer.rect(260, 115, 10, 10).attr({
-  //           fill: 'green',
-  //           stroke: 'green',
-  //               'stroke-width': 0.1
-  //       }).add();
-  //       myChart.renderer.text("From to Grid", 280, 125).add();
+        myChart.renderer.rect(260, 115, 10, 10).attr({
+            fill: 'green',
+            stroke: 'green',
+                'stroke-width': 0.1
+        }).add();
+        myChart.renderer.text("From to Grid", 280, 125).add();
 
-  //       myChart.renderer.rect(440, 115, 10, 10).attr({
-  //           fill: 'yellow',
-  //           stroke: 'yellow',
-  //               'stroke-width': 0.1
-  //       }).add();
-  //       myChart.renderer.text("consumption", 460, 125).add();
+        myChart.renderer.rect(440, 115, 10, 10).attr({
+            fill: 'yellow',
+            stroke: 'yellow',
+                'stroke-width': 0.1
+        }).add();
+        myChart.renderer.text("consumption", 460, 125).add();
     });
 </script>
 </body>
