@@ -14,7 +14,8 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
 <div class="container-fluid">	
-	<div class="row up-row">
+	<div class="row solar-production" id="solar">Solar Production</div>
+	<!-- <div class="row up-row">
 		<div class="col-2 col-sm-2 in-house-content" id="inhouse">In-House Content</div>
 		<div class="col-10 col-sm-10 right-panel">
 			<div class="row awst-clock">AWST Clock</div>
@@ -23,7 +24,7 @@
 	</div>
 	<div class="row weather">
 		weather
-	</div>
+	</div> -->
 </div>
 <script>
 
@@ -40,6 +41,21 @@
 	    });
 
 		Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTypes.column.prototype.drawLegendSymbol;
+
+		function Unix_timestamp(t)
+		{
+			var dt = new Date(t);
+			var hr = dt.getHours();
+			var m = "0" + dt.getMinutes();
+			// var s = "0" + dt.getSeconds();
+			return hr+ ':' + m.substr(-2);  
+		}
+
+	 	Highcharts.setOptions({                                            // This is for all plots, change Date axis to local timezone
+            global : {
+                useUTC : false
+            }
+        });
 
         var myChart = Highcharts.chart('solar', {
         	title: {	
@@ -76,30 +92,41 @@
 		            }
 		        }
 		    },
-		    legend: {
-		    	useHTML: true,
-		        labelFormatter: function() {
-			      return "▬"+this.name
-			    },
-		        layout: 'horizontal',
-		        align: 'center',
-		        verticalAlign: 'top',
-		        x: -10,
-		        y: 100
-		    },
+		    // legend: {
+		    // 	useHTML: true,
+		    //     labelFormatter: function() {
+			   //    return this.name
+			   //  },
+		    //     layout: 'horizontal',
+		    //     align: 'center',
+		    //     verticalAlign: 'top',
+		    //     x: -10,
+		    //     y: 100
+		    // },
+		    // legend: {
+		    // 	layout: 'horizontal',
+			   // align: 'center',
+			   // verticalAlign: 'top',
+			   // itemMarginTop: 0,
+			   // itemMarginBottom: 0
+		    // },
 		    series	: [{
+		    	type: 'area',
 		    	color: "#AED581",
 				dashStyle: "solid",
 				name: 'From to Grid',
+				showInLegend: false,
 		        data: power2gridData,
 		        marker: {
 			        symbol: 'circle'
 			      }
 		    }, {
 		    	name: "consumption",
+		    	showInLegend: false,
 		    	data: consumptionData
 		    }, {
 		    	name: 'toConsumer',
+		    	showInLegend: false,
 		    	data: consumerData,
 		    	composition: {
                     'Caffeine': '51%',
@@ -114,19 +141,41 @@
 		    	shared: false,
 	            formatter: function () {
 	            	var serie = this.series;
+	            	console.log('this value', this.key);
+	            	console.log('real time ', Unix_timestamp(this.x));
+
 	                var s = '';
+	                s += '<span>'+ Unix_timestamp(this.x) +'</span><br>';
 	                s += '<span style="color:' + serie.color + '">' + serie.options.name + '</span>: <b>' + this.y + '</b><br/>';
 	                s += '<span style="display: flex; justify-content: space-between "'+ 'Hello'+'World' +'</span>';
 	                $.each(serie.options.composition, function(name, value) {
 	                    s += '<b><span>' + name + ':</span></b><span style="align-self: right;"> ' + value + '</span><br>';
 	                });
 	                return s;
-	            	// var serieI = this.series.index;
-              //   	var index = categories.indexOf(this.x);
-	             //    return categories[index] + '<br><span style="font-size: 12px; color: #0ff; font-weight: normal">Power to grid' + power2gridData[serieI] + '</span>';
 	            }
 	        },
 		});
+
+		myChart.renderer.rect(80, 115, 10, 10).attr({
+            fill: 'red',
+            stroke: 'red',
+                'stroke-width': 0.1
+        }).add();
+        myChart.renderer.text("consumption", 100, 125).add();
+
+        myChart.renderer.rect(260, 115, 10, 10).attr({
+            fill: 'green',
+            stroke: 'green',
+                'stroke-width': 0.1
+        }).add();
+        myChart.renderer.text("From to Grid", 280, 125).add();
+
+        myChart.renderer.rect(440, 115, 10, 10).attr({
+            fill: 'yellow',
+            stroke: 'yellow',
+                'stroke-width': 0.1
+        }).add();
+        myChart.renderer.text("consumption", 460, 125).add();
     });
 </script>
 </body>

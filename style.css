@@ -1,8 +1,15 @@
-.container div {
-	background: lightgrey;
+.container-fluid {
+	/*background: lightgrey;*/
+    width: 100vh;
+    height: 70vh;
+    margin-top: 150px;
 }
 
-.up-row {
+div {
+	width: 100%
+	height:100%;
+}
+/*.up-row {
 	height: 80vh;
 }
 
@@ -12,7 +19,7 @@
 
 .awst-clock {
 	height: 20%;
-    /*background: lightblue;*/
+    background: lightblue;
 }
 
 .solar-production {
@@ -21,8 +28,7 @@
 
 .weather {
 	height: 20vh;
-	/*background: red;*/
-}
+}*/
 
 .highcharts-legend-item .highcharts-point,
 .highcharts-legend-item .highcharts-graph {
