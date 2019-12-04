@@ -88,25 +88,38 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 			   align: 'center',
 			   verticalAlign: 'top',
 			   itemMarginTop: 10,
-			   itemMarginBottom: 10
+			   itemMarginBottom: 10,
+			   useHTML: true,
+			   labelFormatter: function() {
+			   	// console.log('resutt:', this.index);
+			   	if(this.index == 0){  		
+         	      return '<div class="label-legend" style="width:50px; height: 20px;"><img src="http://cdn.onlinewebfonts.com/svg/img_508736.svg" width = "20px" height = "20px" style="background-color:rgb(96, 96, 96);><span class="username">'+ this.name +'</span></div>';
+    			}
+    			if(this.index == 1) {
+    				console.log(this.index+this.name);
+    			}
+    			if(this.index == 2) {
+    				console.log(this.index+this.name);
+    			}
+			   }
 		    },
 		    series	: [{
 		    	type: 'area',
 		    	color: "#AED581",
 				dashStyle: "solid",
 				name: 'From to Grid',
-				showInLegend: false,
+				showInLegend: true,
 		        data: power2gridData,
 		        marker: {
 			        symbol: 'circle'
 			      }
 		    }, {
 		    	name: "consumption",
-		    	showInLegend: false,
+		    	showInLegend: true,
 		    	data: consumptionData
 		    }, {
 		    	name: 'toConsumer',
-		    	showInLegend: false,
+		    	showInLegend: true,
 		    	data: consumerData,
 		    	composition: {
                     'Caffeine': '51%',
@@ -136,26 +149,26 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 	        },
 		});
 
-		myChart.renderer.rect(80, 115, 10, 10).attr({
-            fill: 'red',
-            stroke: 'red',
-                'stroke-width': 0.1
-        }).add();
-        myChart.renderer.text("consumption", 100, 125).add();
+		// myChart.renderer.rect(80, 0, 10, 10).attr({
+  //           fill: 'red',
+  //           stroke: 'red',
+  //               'stroke-width': 0.1
+  //       }).add();
+  //       myChart.renderer.text("consumption", 100, 0).add();
 
-        myChart.renderer.rect(260, 115, 10, 10).attr({
-            fill: 'green',
-            stroke: 'green',
-                'stroke-width': 0.1
-        }).add();
-        myChart.renderer.text("From to Grid", 280, 125).add();
+  //       myChart.renderer.rect(260, 115, 10, 10).attr({
+  //           fill: 'green',
+  //           stroke: 'green',
+  //               'stroke-width': 0.1
+  //       }).add();
+  //       myChart.renderer.text("From to Grid", 280, 125).add();
 
-        myChart.renderer.rect(440, 115, 10, 10).attr({
-            fill: 'yellow',
-            stroke: 'yellow',
-                'stroke-width': 0.1
-        }).add();
-        myChart.renderer.text("consumption", 460, 125).add();
+  //       myChart.renderer.rect(440, 115, 10, 10).attr({
+  //           fill: 'yellow',
+  //           stroke: 'yellow',
+  //               'stroke-width': 0.1
+  //       }).add();
+  //       myChart.renderer.text("consumption", 460, 125).add();
     });
 </script>
 </body>
