@@ -14,10 +14,6 @@
 			margin-top: 150px;
 		}
 
-		#solar {
-			/*background-color: #7b7c7e;*/
-		}
-
 		.highcharts-legend-item .highcharts-point,
 		.highcharts-legend-item .highcharts-graph {
 		  display: none
@@ -116,7 +112,7 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
     				return '<div class="label-legend" style="width:120px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(0,255,0);stroke-width:1;stroke:rgb(0,0,0)" />'+'</svg>'+'<span class="username">'+ '' + this.name +'</span></div>';
     			}
     			if(this.index == 2) {
-    				return '<div class="label-legend" style="width:120px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(255,0,0);stroke-width:1;stroke:rgb(0,0,0)" />'+'</svg>'+'<span class="username">'+ '' + this.name +'</span></div>';
+    				return '<div class="label-legend" style="width:120px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(0,0,0);stroke-width:1;stroke:rgb(0,0,0)" />'+'</svg>'+'<span class="username">'+ '' + this.name +'</span></div>';
     			}
 			   }
 		    },
