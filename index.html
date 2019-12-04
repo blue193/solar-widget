@@ -91,15 +91,18 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 			   itemMarginBottom: 10,
 			   useHTML: true,
 			   labelFormatter: function() {
-			   	// console.log('resutt:', this.index);
+			   	
 			   	if(this.index == 0){  		
-         	      return '<div class="label-legend" style="width:50px; height: 20px;"><img src="http://cdn.onlinewebfonts.com/svg/img_508736.svg" width = "20px" height = "20px" style="background-color:rgb(96, 96, 96);><span class="username">'+ this.name +'</span></div>';
+			   		console.log(this.index + this.name);
+         	      return '<div class="label-legend" style="width:120px; height: 20px;"><img src="http://cdn.onlinewebfonts.com/svg/img_508736.svg" width = "20px" height = "20px" style="background-color:blue;><span class="username">'+ this.name +'</span></div>';
     			}
     			if(this.index == 1) {
     				console.log(this.index+this.name);
+    				return '<div class="label-legend" style="width:120px; height: 20px;"><img src="http://cdn.onlinewebfonts.com/svg/img_508736.svg" width = "20px" height = "20px" style="background-color:red;><span class="username">'+ this.name +'</span></div>';
     			}
     			if(this.index == 2) {
     				console.log(this.index+this.name);
+    				return '<div class="label-legend" style="width:120px; height: 20px;"><img src="http://cdn.onlinewebfonts.com/svg/img_508736.svg" width = "20px" height = "20px" style="background-color:green;><span class="username">'+ this.name +'</span></div>';
     			}
 			   }
 		    },
