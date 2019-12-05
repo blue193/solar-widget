@@ -6,13 +6,6 @@
 	<script src="https://code.highcharts.com/highcharts.js"></script>
 	<script src="https://code.highcharts.com/modules/exporting.js"></script>
 	<style>
-		body {
-			background-color: #7b7c7e;
-		}
-
-		.container-fluid {
-			margin-top: 130px;
-		}
 
 		.highcharts-legend-item .highcharts-point,
 		.highcharts-legend-item .highcharts-graph {
@@ -27,7 +20,7 @@
 
 <div class="container-fluid">
 	<div class="row d-flex justify-content-center">
-		<div class="col-sm-12 col-lg-8" id="solar"></div>
+		<div class="col-sm-12 col-lg-10" id="solar"></div>
 	</div>
 </div>
 <script>
@@ -61,11 +54,14 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
             }
         });
 
+	 	var chooseMode = ["line", "area"];
+	 	var fullScreenMode = 0;
+
         var myChart = Highcharts.chart('solar', {
         	title: {	
-        		text: null
+        		text: "Name"
         	},
-        	chart: { type: 'line'},
+        	chart: { type: chooseMode[0]},
         	exporting: { enabled: false },
 		    xAxis: {
 		    	"type":"datetime",
@@ -74,7 +70,10 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		    	"crosshair":true,
 		    	"tickWidth":1,
 		    	"tickColor":"#ECEDED",
-		    	"lineColor":"#ECEDED"
+		    	"lineColor":"#ECEDED",
+		    	'labels': {
+		    		step: 2
+		    	}
 		    },
 		    plotOptions: {
 	            series: {
@@ -97,8 +96,8 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 				  }
 		    },
 		    legend: {
-	    	   layout: 'horizontal',
-			   align: 'center',
+	    	   layout: 'vertical',
+			   align: 'right',
 			   verticalAlign: 'top',
 			   itemMarginTop: 10,
 			   itemMarginBottom: 10,
@@ -106,10 +105,10 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 			   labelFormatter: function() {
 			   	
 			   	if(this.index == 0){
-         	      return '<div class="label-legend" style="width:120px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(0,0,255);stroke-width:1;stroke:rgb(0,0,0)" />'+'</svg>'+'<span class="username">'+ '' + this.name +'</span></div>';
+         	      return '<div class="label-legend" style="width:120px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(40,167,69);stroke-width:1;stroke:rgb(40,167,69)" />'+'</svg>'+'<span class="username">' + this.name +'</span></div>';
     			}
     			if(this.index == 1) {
-    				return '<div class="label-legend" style="width:120px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(0,255,0);stroke-width:1;stroke:rgb(0,0,0)" />'+'</svg>'+'<span class="username">'+ '' + this.name +'</span></div>';
+    				return '<div class="label-legend" style="width:120px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(0,123,255);stroke-width:1;stroke:rgb(0,123,255)" />'+'</svg>'+'<span class="username">' + this.name +'</span></div>';
     			}
     			if(this.index == 2) {
     				return '<div class="label-legend" style="width:120px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(0,0,0);stroke-width:1;stroke:rgb(0,0,0)" />'+'</svg>'+'<span class="username">'+ '' + this.name +'</span></div>';
@@ -130,7 +129,8 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		    	name: "consumption",
 		    	showInLegend: true,
 		    	data: consumptionData
-		    }, {
+		    }, 
+		    {
 		    	name: 'toConsumer',
 		    	showInLegend: true,
 		    	data: consumerData,
@@ -139,7 +139,8 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
                     'Alcohol': '31%',
                     'Water': '4%'
                 },
-		    }],
+		    }
+		    ],
 		    tooltip: {
 
 		    	valueDecimals: 2,
@@ -163,15 +164,75 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
     });
 </script>
 <style>
-@media (max-width: 575.98px) {   }
 
-@media (min-width: 576px) and (max-width: 767.98px) { ... }
+@media (min-width: 576px) { 
 
-@media (min-width: 768px) and (max-width: 991.98px) { ... }
+	body {
+		background: red;
+	}
 
-@media (min-width: 992px) and (max-width: 1199.98px) { ... }
+	.container-fluid {
+		margin-top: 100px;
+	}
 
-@media (min-width: 1200px) { ... }
+	#solar {
+		width: 100%;
+		height: 30%;
+		position: absolute;
+	}
+
+	.username {
+		font-size: 10px;
+		margin-left: 5px;
+	}
+}
+
+
+@media (min-width: 768px) {
+	body {
+		background: yellow;
+	}
+
+	.container-fluid {
+		margin-top: 80px;
+	}
+
+	#solar {
+		width: 100%;
+		height: 40%;
+		position: absolute;
+	}
+
+	.username {
+		font-size: 12px;
+		margin-left: 7px;
+	}
+}
+
+
+@media (min-width: 992px) {
+	body {
+		background-color: #7b7c7e;
+	}
+
+	.container-fluid {
+		margin-top: 100px;
+	}
+
+	#solar {
+		width: 100%;
+		height: 60%;
+		position: absolute;
+	}
+
+	.username {
+		font-size: 14px;
+		margin-left: 10px;
+	}
+}
+
+
+@media (min-width: 1200px) {  }
 </style>
 </body>
 </html>
