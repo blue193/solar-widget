@@ -19,7 +19,7 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
 <div class="container-fluid">
-	<div class="row">
+	<div class="row full-screen">
 		<button id="btn" class="btn btn-info">FullScreen</button>
 	</div>
 	<div class="row d-flex justify-content-center">
@@ -201,6 +201,17 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		margin-top: 100px;
 	}
 
+	.full-screen {
+	    position: absolute;
+	    right: 12%;
+	    top: 36%;
+	    z-index: 2;
+	}
+
+	.full-screen .btn {
+		font-size: 8px;
+	}
+
 	#solar {
 		width: 100%;
 		height: 30%;
@@ -223,6 +234,17 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		margin-top: 80px;
 	}
 
+	.full-screen {
+	    position: absolute;
+	    right: 8%;
+	    top: 42%;
+	    z-index: 2;
+	}
+
+	.full-screen .btn {
+		font-size: 11px;
+	}
+
 	#solar {
 		width: 100%;
 		height: 40%;
@@ -243,6 +265,17 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 
 	.container-fluid {
 		margin-top: 100px;
+	}
+
+	.full-screen {
+	    position: absolute;
+	    right: 13%;
+	    top: 63%;
+	    z-index: 2;
+	}
+
+	.full-screen .btn {
+		font-size: 14px;
 	}
 
 	#solar {
