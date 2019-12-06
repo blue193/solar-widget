@@ -19,9 +19,12 @@
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
 
 <div class="container-fluid">
+	<div class="row">
+		<button id="btn" class="btn btn-info">FullScreen</button>
+	</div>
 	<div class="row d-flex justify-content-center">
 		<div class="col-sm-12 col-lg-10" id="solar"></div>
-	</div>
+	</div>	
 </div>
 <script>
 
@@ -159,6 +162,29 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 	                return s;
 	            }
 	        },
+		});
+
+		let btn = document.getElementById("btn")
+
+		btn.addEventListener('click', function() {
+		  Highcharts.FullScreen = function(container) {
+		    this.init(container.parentNode);
+		  };
+
+		  Highcharts.FullScreen.prototype = {
+		    init: function(container) {
+		      if (container.requestFullscreen) {
+		        container.requestFullscreen();
+		      } else if (container.mozRequestFullScreen) {
+		        container.mozRequestFullScreen();
+		      } else if (container.webkitRequestFullscreen) {
+		        container.webkitRequestFullscreen();
+		      } else if (container.msRequestFullscreen) {
+		        container.msRequestFullscreen();
+		      }
+		    }
+		  };
+		  myChart.fullscreen = new Highcharts.FullScreen(myChart.container);
 		});
 
     });
