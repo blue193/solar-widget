@@ -49,6 +49,8 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 			return hr+ ':' + m.substr(-2);  
 		}
 
+		// $('span:has(div.label-legend)').addClass('redBorder');
+	 	
 	 	Highcharts.setOptions({
             global : {
                 useUTC : false
@@ -62,28 +64,41 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
         	title: {	
         		text: "Name"
         	},
-        	chart: { type: chooseMode[0]},
+        	chart: { 
+        		type: chooseMode[0]
+        	},
         	exporting: { enabled: false },
 		    xAxis: {
 		    	"type":"datetime",
+		    	
 		    	"max":1575216300000.0,
 		    	"min":1575129300000.0,
-		    	"crosshair":true,
+		    	"crosshair":false,
 		    	"tickWidth":1,
 		    	"tickColor":"#ECEDED",
-		    	"lineColor":"#ECEDED",
-		    	'labels': {
-		    		step: 2
-		    	}
+		    	"lineColor":"#000000",
+		    	// "tickInterval": 1000 * 3600 * 24
+		    	// "labels": {
+		    	// 	step: 2
+		    	// },
 		    },
 		    plotOptions: {
 	            series: {
 	                marker: {
 	                    enabled: false
-	                }
+	                },
+	                lineWidth: 0.8,
+		            states: {
+		                hover: {
+		                    enabled: true,
+		                    lineWidth: 1
+		                }
+		            }
 	            }
 	        },
 		    yAxis: {
+		    	gridLineWidth: 0,
+  				minorGridLineWidth: 0,
 		    	title: {
 				    align: 'high',
 				    text: 'kw',
@@ -98,49 +113,54 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		    },
 		    legend: {
 	    	   layout: 'vertical',
-			   align: 'right',
+			   align: 'center',
 			   verticalAlign: 'top',
-			   itemMarginTop: 10,
-			   itemMarginBottom: 10,
+			   itemMarginTop: 0,
+			   itemMarginBottom: 0,
 			   useHTML: true,
 			   labelFormatter: function() {
 			   	
 			   	if(this.index == 0){
-         	      return '<div class="label-legend" style="width:120px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(40,167,69);stroke-width:1;stroke:rgb(40,167,69)" />'+'</svg>'+'<span class="username">' + this.name +'</span></div>';
+         	      return '<div class="label-legend" style="width:180px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(40,167,69);stroke-width:1;stroke:rgb(40,167,69)" />'+'</svg>'+'<span class="username">' + this.name +'</span></div>';
     			}
     			if(this.index == 1) {
-    				return '<div class="label-legend" style="width:120px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(0,123,255);stroke-width:1;stroke:rgb(0,123,255)" />'+'</svg>'+'<span class="username">' + this.name +'</span></div>';
+    				return '<div class="label-legend" style="width:180px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(0,123,255);stroke-width:1;stroke:rgb(0,123,255)" />'+'</svg>'+'<span class="username">' + this.name +'</span></div>';
     			}
-    			if(this.index == 2) {
-    				return '<div class="label-legend" style="width:120px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(0,0,0);stroke-width:1;stroke:rgb(0,0,0)" />'+'</svg>'+'<span class="username">'+ '' + this.name +'</span></div>';
-    			}
+    			// if(this.index == 2) {
+    			// 	return '<div class="label-legend" style="width:120px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(0,0,0);stroke-width:1;stroke:rgb(0,0,0)" />'+'</svg>'+'<span class="username">'+ '' + this.name +'</span></div>';
+    			// }
 			   }
 		    },
 		    series	: [{
+		    	name: 'Electricity Consumption',
 		    	type: 'area',
-		    	color: "#AED581",
+		    	color: "rgb(255,255,51)",
 				dashStyle: "solid",
-				name: 'From to Grid',
 				showInLegend: true,
 		        data: power2gridData,
 		        marker: {
 			        symbol: 'circle'
 			      }
 		    }, {
-		    	name: "consumption",
+		    	name: "Solar Production",
+		    	type: 'line',
+		    	color: "rgb(0,123,255)",
+				dashStyle: "solid",
+				borderColor: 'black',
+            	borderWidth: 1,
 		    	showInLegend: true,
 		    	data: consumptionData
 		    }, 
-		    {
-		    	name: 'toConsumer',
-		    	showInLegend: true,
-		    	data: consumerData,
-		    	composition: {
-                    'Caffeine': '51%',
-                    'Alcohol': '31%',
-                    'Water': '4%'
-                },
-		    }
+		    // {
+		    // 	name: 'toConsumer',
+		    // 	showInLegend: true,
+		    // 	data: consumerData,
+		    // 	composition: {
+      //               'Caffeine': '51%',
+      //               'Alcohol': '31%',
+      //               'Water': '4%'
+      //           },
+		    // }
 		    ],
 		    tooltip: {
 
@@ -162,6 +182,9 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 	        },
 		});
 
+		$( "div.label-legend" ).parent().css( "position", "relative" );
+		$("div.label-legend").addClass("haha");
+		
 		let btn = document.getElementById("btn")
 
 		btn.addEventListener('click', function() {
@@ -288,6 +311,12 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		font-size: 12px;
 		margin-left: 7px;
 	}
+
+	.label-legend {
+		position: absolute;
+		left: 264px;
+	}
+
 }
 
 
@@ -318,7 +347,7 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 	}
 
 	.username {
-		font-size: 14px;
+		font-size: 13px;
 		margin-left: 10px;
 	}
 }
