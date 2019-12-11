@@ -55,7 +55,7 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
             }
         });
 
-	 	var chooseMode = ["line", "area"];
+	 	var chooseMode = ["line", "areaspline"];
 	 	var fullScreenMode = 0;
 
         var myChart = Highcharts.chart('solar', {
@@ -65,6 +65,9 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
         	chart: { 
         		type: chooseMode[0]
         	},
+        	credits: {
+			  enabled: false
+			},
         	exporting: { enabled: false },
 		    xAxis: {
 		    	"type":"datetime",
@@ -75,11 +78,14 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		    	"tickWidth":1,
 		    	"tickColor":"#ECEDED",
 		    	"lineColor":"#000000",
-		    	// "labels": {
-		    	// 	step: 2
-		    	// },
+		    	"labels": {
+		    		step: 3
+		    	},
 		    },
 		    plotOptions: {
+		    	areaspline: {
+		            fillOpacity: 0.5
+		        },
 	            series: {
 	                marker: {
 	                    enabled: false
@@ -90,7 +96,9 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		                    enabled: true,
 		                    lineWidth: 1
 		                }
-		            }
+		            },
+
+            		// borderColor: '#303030'
 	            }
 	        },
 		    yAxis: {
@@ -127,8 +135,9 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		    },
 		    series	: [{
 		    	name: 'Electricity Consumption',
-		    	type: 'area',
+		    	type: 'areaspline',
 		    	color: "rgb(255,255,51)",
+		    	lineColor: "black",
 				dashStyle: "solid",
 				showInLegend: true,
 		        data: power2gridData,
