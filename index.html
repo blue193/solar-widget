@@ -60,7 +60,7 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 
         var myChart = Highcharts.chart('solar', {
         	title: {	
-        		text: "Name"
+        		text: "TVOH 1 10kW 201-263"
         	},
         	chart: { 
         		type: chooseMode[0]
@@ -70,14 +70,13 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 			},
         	exporting: { enabled: false },
 		    xAxis: {
-		    	"type":"datetime",
-		    	
-		    	"max":1575216300000.0,
-		    	"min":1575129300000.0,
-		    	"crosshair":false,
-		    	"tickWidth":1,
-		    	"tickColor":"#ECEDED",
-		    	"labels": {
+		    	type:"datetime",
+		    	max:1575216300000.0,
+		    	min:1575129300000.0,
+		    	crosshair:false,
+		    	tickWidth:1,
+		    	tickColor:"#ECEDED",
+		    	labels: {
 		    		step: 3
 		    	},
 		    },
@@ -101,6 +100,7 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		    yAxis: {
 		    	gridLineWidth: 0,
   				minorGridLineWidth: 0,
+  				tickInterval: 1000,
 		    	title: {
 				    align: 'high',
 				    text: 'kw',
@@ -123,37 +123,36 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 			   labelFormatter: function() {
 			   	
 			   	if(this.index == 0){
-         	        return '<div class="label-legend" style="width:180px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(255,255,51);stroke-width:1;stroke:rgb(255,255,51)" />'+'</svg>'+'<span class="username">' + this.name +'</span></div>';
+         	        return '<div class="label-legend" style="width:180px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(0,123,255);stroke-width:1;stroke:rgb(0,123,255)" />'+'</svg>'+'<span class="username">' + this.name +'</span></div>';
     			}
     			if(this.index == 1) {
-    				return '<div class="label-legend" style="width:180px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(0,123,255);stroke-width:1;stroke:rgb(0,123,255)" />'+'</svg>'+'<span class="username">' + this.name +'</span></div>';
+    				return '<div class="label-legend" style="width:180px; height: 20px;"><svg width="12" height="12"><rect width="12" height="12" style="fill:rgb(255,255,51);stroke-width:1;stroke:rgb(255,255,51)" />'+'</svg>'+'<span class="username">' + this.name +'</span></div>';
     			}
 			   }
 		    },
 		    series	: [{
 		    	name: 'Electricity Consumption',
-		    	type: 'areaspline',
-		    	color: "rgb(255,255,51)",
-		    	lineColor: "black",
+		    	type: 'line',
+		    	color: "rgb(0,123,255)",
 				dashStyle: "solid",
 				showInLegend: true,
-		        data: power2gridData,
+		        data: consumptionData,
 		        marker: {
 			        symbol: 'circle'
 			      },
 		    }, {
 		    	name: "Solar Production",
-		    	type: 'line',
-		    	color: "rgb(0,123,255)",
+		    	type: 'areaspline',
+		    	color: "rgb(255,255,51)",
+		    	lineColor: "black",
 				dashStyle: "solid",
 				borderColor: 'black',
             	borderWidth: 1,
 		    	showInLegend: true,
-		    	data: consumptionData,
+		    	data: power2gridData,
 		    	borderColor: 'black',
             	borderWidth: 0.2,
-		    }
-		    ],
+		    }],
 		    tooltip: {
 
 		    	valueDecimals: 2,
