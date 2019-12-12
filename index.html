@@ -77,7 +77,6 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		    	"crosshair":false,
 		    	"tickWidth":1,
 		    	"tickColor":"#ECEDED",
-		    	"lineColor":"#000000",
 		    	"labels": {
 		    		step: 3
 		    	},
@@ -90,15 +89,13 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 	                marker: {
 	                    enabled: false
 	                },
-	                lineWidth: 0.8,
+	                lineWidth: 1,
 		            states: {
 		                hover: {
 		                    enabled: true,
 		                    lineWidth: 1
 		                }
 		            },
-
-            		// borderColor: '#303030'
 	            }
 	        },
 		    yAxis: {
@@ -178,7 +175,6 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		});
 
 		$( "div.label-legend" ).parent().css( "position", "relative" );
-		$("div.label-legend").addClass("haha");
 		
 		let btn = document.getElementById("btn")
 
@@ -202,7 +198,6 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 		  };
 		  myChart.fullscreen = new Highcharts.FullScreen(myChart.container);
 		});
-
     });
 </script>
 <style>
@@ -249,9 +244,7 @@ Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTyp
 
 @media (min-width: 576px) { 
 
-	body {
-		
-	}
+	body {  }
 
 	.container-fluid {
 		margin-top: 100px;
