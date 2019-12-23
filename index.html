@@ -29,7 +29,7 @@
 	$.ajax({
             headers: { "Accept": "application/json"},
             type: 'GET',
-            url: 'http://localhost:3000',
+            url: 'https://gifted-runner-259805.appspot.com/',
             crossDomain: true,
             beforeSend: function(xhr){
                 xhr.withCredentials = true;
@@ -112,10 +112,10 @@ function drawChart(data) {
 	    },
 	    yAxis: {
 	    	gridLineWidth: 0,
-				minorGridLineWidth: 0,
+			minorGridLineWidth: 0,
 			tickInterval: 4500,
 			tickWidth: 32,
-			offset: 10,
+			offset: 0,
 			tickLength: 0,
 			tickPosition: 'inside',
 			tickAmount: 5,
@@ -128,7 +128,7 @@ function drawChart(data) {
 			    },
 			    rotation: 0,
 			    y: -20,
-			    x: 10,
+			    x: 30,
 			    textAlign: 'center'
 			}
 	    },
