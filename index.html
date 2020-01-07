@@ -21,7 +21,7 @@
 		<button id="btn" class="btn btn-info">FullScreen</button>
 	</div>
 	<div class="row d-flex justify-content-center">
-		<div class="col-sm-12 col-lg-10" id="solar"></div>
+		<div class="col-sm-12 col-lg-10" id="solar" style="height: 500px"></div>
 	</div>	
 </div>
 <script>
@@ -57,7 +57,7 @@ function drawChart(data) {
 	solarProductionData = data.settings.series[2].data;
 	x_min_1 = data.settings.xAxis.min;
 	x_max_1 = data.settings.xAxis.max;
-
+console.log('hello',Unix_timestamp(x_min_1), Unix_timestamp(x_max_1));
 	Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTypes.column.prototype.drawLegendSymbol;
 	$("#a1").click(function () {
         $('.highcharts-legend-item:nth-child(1)').click();
@@ -78,7 +78,8 @@ function drawChart(data) {
     		text: "TVOH 1 10kW 201-263"
     	},
     	chart: { 
-    		type: chooseMode[0]
+    		type: chooseMode[0],
+
     	},
     	credits: {
 		  enabled: false
@@ -115,12 +116,11 @@ function drawChart(data) {
 	    yAxis: {
 	    	gridLineWidth: 0,
 			minorGridLineWidth: 0,
-			tickInterval: 4500,
+			tickInterval: 2000,
 			tickWidth: 32,
 			offset: 0,
 			tickLength: 0,
 			tickPosition: 'inside',
-			tickAmount: 5,
 			min: 0,
 	    	title: {
 			    align: 'high',
