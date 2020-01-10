@@ -52,12 +52,16 @@ function Unix_timestamp(t) {
 }
 
 function drawChart(data) {
-	
-	consumptionData = data.settings.series[0].data;
+	var start = new Date().getTime();
+	// var elapsed = new Date().getTime() - start;
+
+	consumptionData = data.settings.series[1].data;
 	solarProductionData = data.settings.series[2].data;
 	x_min_1 = data.settings.xAxis.min;
 	x_max_1 = data.settings.xAxis.max;
-console.log('hello',Unix_timestamp(x_min_1), Unix_timestamp(x_max_1));
+	
+
+console.log('current',data.settings);
 	Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTypes.column.prototype.drawLegendSymbol;
 	$("#a1").click(function () {
         $('.highcharts-legend-item:nth-child(1)').click();
