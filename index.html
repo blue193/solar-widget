@@ -38,10 +38,11 @@ setInterval(function() {
           },
             success: function(data, textStatus, request){
 				var jsonData = JSON.parse(data.data);
+				console.log('response = ', jsonData)
 				drawChart(jsonData);
             }
 	 });
-	 console.log('hello')
+	 
 }, 1000 * 60 * 0.5);
 
 function Unix_timestamp(t) {
@@ -54,9 +55,17 @@ function Unix_timestamp(t) {
 function drawChart(data) {
 	var start = new Date().getTime();
 	// var elapsed = new Date().getTime() - start;
+	productionData = data.settings.series[0].data;
+	consumedDirectData = data.settings.series[1].data;
+	powerFromGridData = data.settings.series[2].data;
 
-	consumptionData = data.settings.series[1].data;
-	solarProductionData = data.settings.series[2].data;
+	consumptionData = consumedDirectData.map(function (item, idx) { 
+		return [item[0]+powerFromGridData[idx][0], item[1]+powerFromGridData[idx][1]]
+	});
+	
+	console.log('consumptionData', consumptionData)
+	console.log('a , b = ', consumedDirectData, powerFromGridData)
+
 	x_min_1 = data.settings.xAxis.min;
 	x_max_1 = data.settings.xAxis.max;
 	
@@ -162,7 +171,7 @@ console.log('current',data.settings);
 			dashStyle: "solid",
 			lineWidth: 2,
 			showInLegend: true,
-	        data: consumptionData,
+	        data: productionData,
 	        marker: {
 		        symbol: 'circle'
 		      },
@@ -176,7 +185,7 @@ console.log('current',data.settings);
 			borderColor: 'black',
         	borderWidth: 1,
 	    	showInLegend: true,
-	    	data: solarProductionData,
+	    	data: consumptionData,
 	    	borderColor: 'black',
         	borderWidth: 0.2,
 	    }],
