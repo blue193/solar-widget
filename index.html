@@ -60,17 +60,12 @@ function drawChart(data) {
 	powerFromGridData = data.settings.series[2].data;
 
 	consumptionData = consumedDirectData.map(function (item, idx) { 
-		return [item[0]+powerFromGridData[idx][0], item[1]+powerFromGridData[idx][1]]
+		return [item[0], item[1]+powerFromGridData[idx][1]]
 	});
-	
-	console.log('consumptionData', consumptionData)
-	console.log('a , b = ', consumedDirectData, powerFromGridData)
 
 	x_min_1 = data.settings.xAxis.min;
 	x_max_1 = data.settings.xAxis.max;
 	
-
-console.log('current',data.settings);
 	Highcharts.seriesTypes.scatter.prototype.drawLegendSymbol = Highcharts.seriesTypes.column.prototype.drawLegendSymbol;
 	$("#a1").click(function () {
         $('.highcharts-legend-item:nth-child(1)').click();
@@ -174,8 +169,9 @@ console.log('current',data.settings);
 	        data: productionData,
 	        marker: {
 		        symbol: 'circle'
-		      },
-		},{
+			  }
+			},
+			{
 	    	name: "Electricity Consumption",
 	    	type: 'areaspline',
 	    	color: "rgb(255,255,51)",
@@ -188,7 +184,7 @@ console.log('current',data.settings);
 	    	data: consumptionData,
 	    	borderColor: 'black',
         	borderWidth: 0.2,
-	    }],
+	    	}],
 	    tooltip: {
 
 	    	valueDecimals: 2,
