@@ -54,7 +54,7 @@ function Unix_timestamp(t) {
 
 function drawChart(data) {
 	var start = new Date().getTime();
-	// var elapsed = new Date().getTime() - start;
+	
 	productionData = data.settings.series[0].data;
 	consumedDirectData = data.settings.series[1].data;
 	powerFromGridData = data.settings.series[2].data;
@@ -196,7 +196,7 @@ function drawChart(data) {
                 var s = '';
                 s += '<span>'+ Unix_timestamp(this.x) +'</span><br>';
                 s += '<span style="color:' + serie.color + '">' + serie.options.name + '</span>: <b>' + this.y + '<span style="color:' + serie.color + '">w</span></b><br/>';
-                // s += '<span style="display: flex; justify-content: space-between "'+ 'Hello'+'World' +'</span>';
+
                 $.each(serie.options.composition, function(name, value) {
                     s += '<b><span>' + name + 'aaaaa:</span></b><span style="align-self: right;"> ' + value + 'w </span><br>';
                 });
