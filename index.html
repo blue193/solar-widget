@@ -29,19 +29,19 @@
 setInterval(function() {
   
   $.ajax({
-            headers: { "Accept": "application/json"},
-            type: 'GET',
-            url: 'https://gifted-runner-259805.appspot.com/',
-            crossDomain: true,
-            beforeSend: function(xhr){
-                xhr.withCredentials = true;
-          },
-            success: function(data, textStatus, request){
-				var jsonData = JSON.parse(data.data);
-				console.log('response = ', jsonData)
-				drawChart(jsonData);
-            }
-	 });
+		headers: { "Accept": "application/json"},
+		type: 'GET',
+		url: 'https://gifted-runner-259805.appspot.com/',
+		crossDomain: true,
+		beforeSend: function(xhr){
+			xhr.withCredentials = true;
+		},
+		success: function(data, textStatus, request){
+			var jsonData = JSON.parse(data.data);
+			console.log('response = ', jsonData)
+			drawChart(jsonData);
+		}
+	});
 	 
 }, 1000 * 60 * 0.5);
 
