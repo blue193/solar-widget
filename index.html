@@ -210,24 +210,24 @@ function drawChart(data) {
 	let btn = document.getElementById("btn")
 
 	btn.addEventListener('click', function() {
-	  Highcharts.FullScreen = function(container) {
-	    this.init(container.parentNode);
-	  };
+		Highcharts.FullScreen = function(container) {
+		this.init(container.parentNode);
+		};
 
-	  Highcharts.FullScreen.prototype = {
-	    init: function(container) {
-	      if (container.requestFullscreen) {
-	        container.requestFullscreen();
-	      } else if (container.mozRequestFullScreen) {
-	        container.mozRequestFullScreen();
-	      } else if (container.webkitRequestFullscreen) {
-	        container.webkitRequestFullscreen();
-	      } else if (container.msRequestFullscreen) {
-	        container.msRequestFullscreen();
-	      }
-	    }
-	  };
-	  myChart.fullscreen = new Highcharts.FullScreen(myChart.container);
+		Highcharts.FullScreen.prototype = {
+		init: function(container) {
+			if (container.requestFullscreen) {
+			container.requestFullscreen();
+			} else if (container.mozRequestFullScreen) {
+			container.mozRequestFullScreen();
+			} else if (container.webkitRequestFullscreen) {
+			container.webkitRequestFullscreen();
+			} else if (container.msRequestFullscreen) {
+			container.msRequestFullscreen();
+			}
+		}
+		};
+	  	myChart.fullscreen = new Highcharts.FullScreen(myChart.container);
 	});
 }
 
